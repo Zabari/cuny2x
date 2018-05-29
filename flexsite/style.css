@@ -1,0 +1,43 @@
+.card-text{
+    font-size:1rem;
+}
+.page{
+    display:flex;
+    justify-content: space-evenly;
+    flex-flow: wrap row;
+}
+.about{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*Blinking text from stackoverflow https://stackoverflow.com/questions/18105152/alternative-for-blink*/
+.blink_text {
+
+    animation:3s blinker linear infinite;
+    -webkit-animation:3s blinker linear infinite;
+    -moz-animation:3s blinker linear infinite;
+
+     color: black;
+    }
+
+    @-moz-keyframes blinker {
+     0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+     }
+
+    @-webkit-keyframes blinker {
+     0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+     }
+
+    @keyframes blinker {
+     0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+     }
+
+/*End of stackoverflow*/
