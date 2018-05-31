@@ -1,0 +1,47 @@
+<script type="text/javascript">
+Photo= function(filename,location){
+        this.fname=filename;
+        this.loc=location;
+};
+Photo.prototype.getFilename=function(){
+    return this.fname;
+};
+Photo.prototype.getLocation=function(){
+    return this.loc;
+};
+Album= function(){
+    this.photos=[];
+};
+Album.prototype.getPhotoByNumber=function(num){
+    num=num-1;
+    if (this.photos[num]){
+        return this.photos[num];
+    }
+    else{
+        return "This number photo is not available."
+    }
+};
+Album.prototype.AddPhoto=function(photo){
+    this.photos.push(photo);
+    return;
+};
+Album.prototype.ListPhotos=function(photo){
+    var i=0;
+    var ret="\n";
+    for (i=0;i<this.photos.length;i++){
+        ret+=this.photos[i].getFilename()+'\n';
+    }
+    return ret;
+};
+
+var x=new Photo("summername","myhouse");
+var y=new Photo("wintername","yourhouse");
+var a=new Album();
+a.AddPhoto(x);
+a.AddPhoto(y);
+console.log(x.getLocation());
+console.log(y.getFilename());
+console.log(a.getPhotoByNumber(1));
+console.log(a.getPhotoByNumber(2));
+console.log(a.ListPhotos());
+</script>
