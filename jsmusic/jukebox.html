@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="page">
+        <h1> Input the path to the file:</h1>
+        <form id="tbox">
+            <input type="text" name="trname">
+            <!---<input type="file" name="fup">--->
+        </form>
+        <button type="button" onclick="qSong()"> Queue this song.</button>
+        <button type="button" onclick="play()"> Play/Pause</button>
+        <button type="button" onclick="next()"> Next</button>
+        <audio id="aud" controls onended="next()">
+            <source id="fullpath" src="./tracks/track1.mp3"> </source>
+        </audio>
+    <div id="list"></div>
+    </div>
+    <script>
+        var setList=[]
+        var play=function() {
+            if (document.getElementById("aud").paused){
+                document.getElementById("aud").play();
+            }
+            else{
+                document.getElementById("aud").pause();
+            }
+        }
+        var qSong=function() {
+            setList.push(document.getElementById("tbox").trname.value);
+            document.getElementById("tbox").trname.value="";
+            document.getElementById("list").innerHTML="<p></p>";
+            setList.forEach(function(item,index){
+                document.getElementById("list").innerHTML+="<p>"+item.toString()+"<p>";
+                //console.log(item);
+            });
+
+        }
+        var next=function(){
+            document.getElementById("aud").pause();
+            if (setList){
+                document.getElementById("fullpath").src="file://"+setList.shift().toString();
+                document.getElementById("aud").load();
+
+                document.getElementById("list").innerHTML="<p></p>";
+                setList.forEach(function(item,index){
+                    document.getElementById("list").innerHTML+="<p>"+item.toString()+"<p>";
+                });
+                document.getElementById("aud").play();
+
+            }
+        }
+    </script>
+</html>
