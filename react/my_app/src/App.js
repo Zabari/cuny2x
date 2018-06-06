@@ -8,16 +8,16 @@ class ListItem extends React.Component{
      //console.log(this.props.children[1]);
      if (this.props.finishedItem){
        return (
-         <div><li><button onClick={()=>this.props.func(this.props.index)}>Oops put it back!</button>  {this.props.task}  <button onClick={()=>this.props.delFunc(this.props.index)}>Delete forever!</button></li></div>
+         <div><li><button onClick={()=>this.props.func(this.props.index)}><s><font color="red">{this.props.task}</font></s></button>    <button onClick={()=>this.props.delFunc(this.props.index)}>Delete forever!</button></li></div>
        );
      }
      if (this.props.starred){
      return(
-       <div><li><button onClick={()=>this.props.func(this.props.index)}>Task Finished!</button><b>  {this.props.task}  </b><button onClick={()=>this.props.starFunc(this.props.index)}>Unstar</button></li></div>
+       <div><li><button onClick={()=>this.props.func(this.props.index)}> <font color="blue"> {this.props.task}</font>  </button><button onClick={()=>this.props.starFunc(this.props.index)}>Unstar</button></li></div>
      );
      }
      return(
-       <div><li><button onClick={()=>this.props.func(this.props.index)}>Task Finished!</button>  {this.props.task}  <button onClick={()=>this.props.starFunc(this.props.index)}>Star</button></li></div>
+       <div><li><button onClick={()=>this.props.func(this.props.index)}>  {this.props.task}</button>  <button onClick={()=>this.props.starFunc(this.props.index)}>Star</button></li></div>
      );
       }
 }
@@ -107,9 +107,7 @@ class App extends Component {
                 <h1> Tasks to be done:</h1>
                 <ul>
                 {(tasks ? tasks : null)}
-                </ul>
-                <h2> Finished tasks:</h2>
-                <ul>
+
                 {(finished ? finished : null)}
                 </ul>
           </div>
