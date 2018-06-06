@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
+import FlipMove from 'react-flip-move';
 
 class ListItem extends React.Component{
-  constructor(){
-    super();
-  }
    render() {
      //console.log(this.props.children[1]);
      if (this.props.finishedItem){
@@ -51,7 +49,7 @@ class App extends Component {
     }
     deleteForever(index){
       let updateFinished=this.state.listOfFinished;
-      updateFinished.splice(index,1)[0];
+      updateFinished.splice(index,1);
       this.setState({listOfFinished:updateFinished});
     }
     removeItem(index){
@@ -86,8 +84,8 @@ class App extends Component {
         const listOfTasks=this.state.listOfTasks;
         const listOfFinished=this.state.listOfFinished;
         //console.log(listOfFinished);
-        const tasks=listOfTasks.map((task, i) => (<ListItem index={i} func={this.removeItem} task={task.name} starred={task.starred} starFunc={this.starItem} key={i}> </ListItem>));
-        const finished=listOfFinished.map((task, i) => (<ListItem index={i} func={this.addBack} finishedItem={1} delFunc={this.deleteForever} task={task.name} starred={task.starred} key={i}> </ListItem>));
+        const tasks=listOfTasks.map((task, i) => (<FlipMove key={i}><ListItem index={i} func={this.removeItem} task={task.name} starred={task.starred} starFunc={this.starItem} key={i}> </ListItem></FlipMove>));
+        const finished=listOfFinished.map((task, i) => (<FlipMove key={i}><ListItem index={i} func={this.addBack} finishedItem={1} delFunc={this.deleteForever} task={task.name} starred={task.starred} key={i}> </ListItem></FlipMove>));
         //const finished=0;
         //const tasks=listOfTasks.map((task, i) => (<li key={i}><button onClick={()=>this.removeItem(i)}>Task Finished!</button> {task.name}</li>));
         //const finished=listOfFinished.map((task, i)=> (<li key={i}><button onClick={()=>this.addBack(i)}>Oops put it back!</button> {task.name}</li>));
