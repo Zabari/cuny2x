@@ -53,10 +53,11 @@ var isThisIt=function(name,id,callback){
     }, function (err, result) {
     if (err) { return onErr(err); }
       //console.log(result.yn=="yes");
-      if (result.yn=="yes"){
+      if (result.yn=="yes"||result.yn=="y"){
         post(name,id);
       }
       else{
+        console.log("Sorry, I couldn't find your channel or you didn't type the word \"yes\".");
         return addChannel();
       }
   });
@@ -109,7 +110,10 @@ var post=function(name,id){
   };
   search("", opts, function(err, results) {
     if(err) return console.log(err);
-    T.post('statuses/update', { status: "Here's the latest video from "+name+"!: "+results[0].link }, function(err, data, response) {});
+    T.post('statuses/update', { status: "Here's the latest video from "+name+"!: "+results[0].link }, function(err, data, response) {
+      if (err){return err;}
+      console.log("The latest video has been posted!");
+    });
     //console.log("Does the title \""+ results[0].channelTitle+"\" sound right?");
   });
 
